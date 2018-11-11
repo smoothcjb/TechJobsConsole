@@ -67,9 +67,6 @@ namespace TechJobsConsole
             return keywords;
         }
 
-    
-
-
             public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
             {
                 // load data, if not already loaded

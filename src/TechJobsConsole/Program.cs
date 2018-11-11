@@ -67,7 +67,6 @@ namespace TechJobsConsole
                     {
                         searchResults = JobData.FindByValue(columnChoice, searchTerm);
                         PrintJobs(searchResults);
-                        //Console.WriteLine("Search all fields not yet implemented.");
 
                     }
                     else 
@@ -123,14 +122,10 @@ namespace TechJobsConsole
             return choiceKeys[choiceIdx];
         }
 
-        //private static void PrintJobs(List<Dictionary<string, string>> someJobs)
+        
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
 
         {
-            //Console.WriteLine("printJobs is not implemented yet");
-            //Console.WriteLine("All was selected");
-
-
 
             for (int i = 0; i < someJobs.Count; i++)
             {
