@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -38,7 +39,7 @@ namespace TechJobsConsole
                     {
                         PrintJobs(JobData.FindAll());
                     }
-                    else
+                    else 
                     {
                         List<string> results = JobData.FindAll(columnChoice);
 
@@ -62,14 +63,20 @@ namespace TechJobsConsole
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
+              
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(columnChoice, searchTerm);
+                        PrintJobs(searchResults);
+                        //Console.WriteLine("Search all fields not yet implemented.");
+
                     }
-                    else
+                    else 
                     {
                         searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         PrintJobs(searchResults);
                     }
+                    
+	
                 }
             }
         }
@@ -116,9 +123,30 @@ namespace TechJobsConsole
             return choiceKeys[choiceIdx];
         }
 
+        //private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
+
         {
-            Console.WriteLine("printJobs is not implemented yet");
+            //Console.WriteLine("printJobs is not implemented yet");
+            //Console.WriteLine("All was selected");
+
+
+
+            for (int i = 0; i < someJobs.Count; i++)
+            {
+                var newJob = someJobs[i].ToList();
+                foreach (KeyValuePair<string, string> job in newJob)
+                    Console.WriteLine("{0}: {1}", job.Key, job.Value);
+                    Console.WriteLine("*****");
+
+            }
+
+
+
         }
+
     }
 }
+        
+    
+
