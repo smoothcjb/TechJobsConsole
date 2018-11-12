@@ -43,28 +43,35 @@ namespace TechJobsConsole
         {
             // load data, if not already loaded
             LoadData();
-
+        
             List<Dictionary<string, string>> keywords = new List<Dictionary<string, string>>();
+
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                List<string> keyword = new List<string>(row.Values);
-                for (int i = 0; i < keyword.Count; i++)
+                List<string> keyValues = new List<string>(row.Values);
+                foreach(string aValue in keyValues)
                 {
-                    string aValue = keyword[i];
-                    if (aValue.Contains(value))
-                        if (keywords.Contains(row))
+
+                    if (aValue.Contains(value) || aValue.StartsWith(value, System.StringComparison.CurrentCultureIgnoreCase))
+                            if (keywords.Contains(row))
+
                         {
-                            continue;
+                               continue;
                         }
-                        else
+                            else
                         {
-                            keywords.Add(row);
+                                keywords.Add(row);
+
+
                         }
+                
                 }
+                
+                
             }
 
-            return keywords;
+        return keywords;
         }
 
             public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
@@ -78,10 +85,11 @@ namespace TechJobsConsole
                 {
                     string aValue = row[column];
 
-                    if (aValue.Contains(value))
-                    {
+                if(aValue.Contains(value) || aValue.StartsWith(value, System.StringComparison.CurrentCultureIgnoreCase))
+                {
                         jobs.Add(row);
                     }
+                
                 }
 
                 return jobs;
